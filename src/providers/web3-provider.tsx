@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useEffect, type ReactNode } from "react";
 import { WagmiProvider, createConfig, http } from "wagmi";
 import { baseSepolia } from "wagmi/chains";
-import { injected } from "wagmi/connectors";
+import { injected, metaMask, coinbaseWallet } from "wagmi/connectors";
 
 const rpcUrl =
   process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC || "https://sepolia.base.org";
@@ -12,7 +12,10 @@ const rpcUrl =
 export const config = createConfig({
   chains: [baseSepolia],
   connectors: [
-    injected(), // Native injected wallet to fix Wagmi v3 / RainbowKit conflict
+    injected(), // desktop extension + in-app browser (MetaMask/Rabbit mobile)
+    metaMask({ dappMetadata: { name: "IntentShield" } }), // mobile deep-link fallback
+    coinbaseWallet({ appName: "IntentShield" }), // mobile tanpa install via Smart Wallet
+    // ponytail: no walletConnect connector, needs WC projectId; add when QR-for-all-wallets required
   ],
   transports: {
     [baseSepolia.id]: http(rpcUrl),

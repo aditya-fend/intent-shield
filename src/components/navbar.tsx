@@ -123,23 +123,39 @@ export function Navbar() {
   }, [pathname]);
 
   const handleConnect = () => {
-    const injectedConnector = connectors.find(
-      (connector) =>
-        connector.id === "injected" ||
-        connector.name === "MetaMask" ||
-        connector.name === "Injected",
+    const hasInjected =
+      typeof window !== "undefined" &&
+      !!(window as unknown as { ethereum?: unknown }).ethereum;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(
+      typeof navigator !== "undefined" ? navigator.userAgent : "",
     );
 
-    if (!injectedConnector) {
-      alert(
-        "Tidak mendeteksi ekstensi wallet seperti MetaMask di browser Anda.",
-      );
+    // ponytail: sequential fallback, no wallet modal; add modal when >3 wallets needed
+    const pick =
+      (hasInjected &&
+        connectors.find(
+          (c) =>
+            c.id === "injected" || c.name === "Injected" || c.name === "MetaMask",
+        )) ||
+      connectors.find((c) => c.id === "coinbaseWalletSDK") ||
+      connectors.find((c) => c.id === "io.metamask" || c.name === "MetaMask") ||
+      connectors[0];
+
+    if (!pick) return;
+
+    // Mobile tanpa wallet terdeteksi: deep-link ke aplikasi MetaMask
+    if (!hasInjected && isMobile && pick.name !== "Coinbase Wallet") {
+      const dapp = window.location.host + window.location.pathname;
+      window.location.href = `https://metamask.app.link/dapp/${dapp}`;
       return;
     }
 
-    connect({
-      connector: injectedConnector,
-    });
+    if (!hasInjected && !isMobile && pick.name !== "Coinbase Wallet") {
+      window.open("https://metamask.io/download/", "_blank");
+      return;
+    }
+
+    connect({ connector: pick });
   };
 
   const handleNavClick = (

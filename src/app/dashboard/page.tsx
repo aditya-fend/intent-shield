@@ -208,17 +208,6 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
           ref={cardRef}
           className="proof-main-card relative z-10 rounded-3xl border border-[#e2e5df] bg-white p-8 shadow-sm will-change-transform dark:border-white/10 dark:bg-[#0e1117] sm:p-11"
         >
-          {/* TOP STATUS ROW */}
-          <div className="flex items-center justify-between border-b border-[#edf0eb] pb-6 dark:border-white/5">
-            <div className="proof-badge inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              Verified by IntentShield
-            </div>
-
-            <span className="text-xs font-mono uppercase tracking-wider text-[#858981] dark:text-neutral-500">
-              EIP-712 Attestation
-            </span>
-          </div>
 
           {/* HEADER */}
           <div className="pb-8 pt-6">
@@ -239,14 +228,13 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
                 </svg>
               </div>
               <h1 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white sm:text-3xl">
-                Eksekusi Intent Selesai
+                Intent Execution Complete
               </h1>
             </div>
 
             <p className="proof-desc text-sm leading-relaxed text-[#59616d] dark:text-neutral-400">
-              Bukti kriptografis off-chain dan on-chain telah diverifikasi.
-              Transaksi dieksekusi dengan aman sesuai batasan maksimum yang Anda
-              setujui.
+              Off-chain and on-chain cryptographic proofs verified.
+              Transaction executed safely within your approved limits.
             </p>
           </div>
 
@@ -254,7 +242,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
           <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Jaringan
+                Network
               </span>
               <p className="mt-1 text-sm font-bold text-[#1d2a40] dark:text-white">
                 Base Sepolia (Chain 84532)
@@ -263,7 +251,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
 
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Pasangan Transaksi
+                Transaction Pair
               </span>
               <p className="mt-1 text-sm font-bold text-[#1d2a40] dark:text-white">
                 USDC → ETH · Uniswap
@@ -272,7 +260,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
 
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Metode Keamanan
+                Security Method
               </span>
               <p className="mt-1 text-sm font-bold text-[#1d2a40] dark:text-white">
                 Off-Chain L1 + On-Chain Enforcer
@@ -281,10 +269,10 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
 
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Hasil Verifikasi
+                Verification Result
               </span>
               <p className="mt-1 text-sm font-bold text-emerald-600 dark:text-emerald-400">
-                Status Lolos (Within Limit)
+                Passed (Within Limit)
               </p>
             </div>
           </div>
@@ -313,7 +301,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
               size="lg"
               className="w-full flex-1 rounded-2xl bg-[#273b61] py-6 text-sm font-semibold text-white shadow-none transition-transform duration-200 hover:bg-[#1f3152] active:scale-[0.99] dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
             >
-              Tutup & Kembali
+              Close & Back
             </Button>
             <Link href="/" className="w-full sm:w-auto">
               <Button
@@ -321,7 +309,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
                 variant="outline"
                 className="w-full rounded-2xl border-[#cbd5e7] bg-transparent px-7 py-6 text-sm font-semibold text-[#34415a] shadow-none transition-transform duration-200 hover:bg-neutral-100 active:scale-[0.99] dark:border-white/10 dark:text-neutral-300 dark:hover:bg-white/5"
               >
-                Beranda
+                Home
               </Button>
             </Link>
           </div>
@@ -339,7 +327,7 @@ export default function DashboardPage() {
 
   // POV User States
   const [intent, setIntent] = useState(
-    "Swap maksimal 500 USDC ke ETH di Uniswap dengan max 1% slippage selama 1 jam",
+    "Swap up to 500 USDC to ETH on Uniswap with max 1% slippage for 1 hour",
   );
   const [isCompiling, setIsCompiling] = useState(false);
   const [draftPolicy, setDraftPolicy] = useState<Policy | null>(null);
@@ -348,6 +336,7 @@ export default function DashboardPage() {
   // POV Agent States
   const [proposedAmount, setProposedAmount] = useState<string>("300");
   const [isExecutingAgent, setIsExecutingAgent] = useState(false);
+  const [bypassL1, setBypassL1] = useState(false);
 
   // Pipeline & Logs
   const [logs, setLogs] = useState<ExecutionLog[]>(initialLogs);
@@ -536,7 +525,7 @@ export default function DashboardPage() {
       if (!res.ok) throw new Error(`API error: ${res.statusText}`);
       const data = await res.json();
 
-      if (!data.success) throw new Error(data.error || "Gagal generate policy");
+      if (!data.success) throw new Error(data.error || "Failed to generate policy");
 
       const geminiPolicy = data.draftPolicy;
       const finalPolicy: Policy = {
@@ -551,7 +540,7 @@ export default function DashboardPage() {
       setDraftPolicy(finalPolicy);
     } catch (err: any) {
       console.error(err);
-      alert("Gagal menghubungi Gemini: " + err.message);
+      alert("Failed to reach Gemini: " + err.message);
       updateLog("compiler", "error");
     } finally {
       setIsCompiling(false);
@@ -568,11 +557,11 @@ export default function DashboardPage() {
     if (chain?.id !== 84532) {
       try {
         if (!switchChainAsync)
-          throw new Error("Metode switch chain tidak tersedia.");
+          throw new Error("Chain switch method unavailable.");
         await switchChainAsync({ chainId: 84532 });
         await new Promise((res) => setTimeout(res, 500));
       } catch (error) {
-        alert("Pindah ke jaringan Base Sepolia untuk melanjutkan!");
+        alert("Switch to Base Sepolia to continue!");
         updateLog("sign", "error");
         return;
       }
@@ -598,7 +587,7 @@ export default function DashboardPage() {
       setDraftPolicy(null);
     } catch (error: any) {
       console.error("Signing failed", error);
-      alert("Signing dibatalkan atau gagal: " + error.message);
+      alert("Signing cancelled or failed: " + error.message);
       updateLog("sign", "error");
     }
   };
@@ -608,7 +597,7 @@ export default function DashboardPage() {
   // ==========================================================
   const handleSimulateAgentProposal = async (overrideAmount?: string) => {
     if (!signedPolicy) {
-      alert("User harus menandatangani Policy (EIP-712) terlebih dahulu!");
+      alert("User must sign the Policy (EIP-712) first!");
       return;
     }
 
@@ -641,21 +630,24 @@ export default function DashboardPage() {
     const expiresAtTime = Number(signedPolicy.expiresAt);
 
     // Step 04: Layer 1 Off-Chain Verifier
+    // ponytail: bypass only skips L1 checks, L2 still enforces on-chain; graduate to a real backend check when live
     updateLog("l1", "loading");
     await new Promise((res) => setTimeout(res, 1000));
 
-    // CHECK CONSTRAINT LAYER 1: KEDALUWARSA (TIME LOCK)
-    if (currentTime > expiresAtTime) {
-      updateLog("l1", "error");
-      setIsExecutingAgent(false);
-      return; // DIBLOKIR OFF-CHAIN!
-    }
+    if (!bypassL1) {
+      // CHECK CONSTRAINT LAYER 1: KEDALUWARSA (TIME LOCK)
+      if (currentTime > expiresAtTime) {
+        updateLog("l1", "error");
+        setIsExecutingAgent(false);
+        return; // DIBLOKIR OFF-CHAIN!
+      }
 
-    // CHECK CONSTRAINT LAYER 1: NOMINAL LIMIT
-    if (proposedAmountInRaw > userMaxLimitRaw) {
-      updateLog("l1", "error");
-      setIsExecutingAgent(false);
-      return; // DIBLOKIR OFF-CHAIN!
+      // CHECK CONSTRAINT LAYER 1: NOMINAL LIMIT
+      if (proposedAmountInRaw > userMaxLimitRaw) {
+        updateLog("l1", "error");
+        setIsExecutingAgent(false);
+        return; // DIBLOKIR OFF-CHAIN!
+      }
     }
 
     updateLog("l1", "success");
@@ -663,6 +655,11 @@ export default function DashboardPage() {
     // Step 05: Layer 2 Smart Contract Enforcer
     updateLog("l2", "loading");
     await new Promise((res) => setTimeout(res, 1200));
+    if (currentTime > expiresAtTime || proposedAmountInRaw > userMaxLimitRaw) {
+      updateLog("l2", "error");
+      setIsExecutingAgent(false);
+      return; // DIBLOKIR ON-CHAIN!
+    }
     updateLog("l2", "success");
 
     // Step 06: Result
@@ -693,15 +690,15 @@ export default function DashboardPage() {
           <div className="relative z-10 flex h-full flex-col justify-between space-y-6">
             <div className="max-w-3xl space-y-4">
               <h1 className="dash-hero-title text-4xl font-bold leading-tight tracking-tight text-[#1d2a40] dark:text-white sm:text-5xl">
-                Dashboard Kontrol{" "}
+                Control Dashboard{" "}
                 <span className="text-[#5275bb] dark:text-blue-400">
                   IntentShield
                 </span>
               </h1>
               <p className="dash-hero-desc max-w-2xl text-base text-[#5c687c] dark:text-neutral-400 sm:text-lg">
-                Uji proteksi dua lapis (Off-Chain Verifier & On-Chain Enforcer)
-                terhadap proposal transaksi agen otonom secara terpisah dan
-                interaktif.
+                Test dual-layer protection (Off-Chain Verifier & On-Chain Enforcer)
+                against autonomous agent transaction proposals, separately and
+                interactively.
               </p>
             </div>
           </div>
@@ -716,10 +713,10 @@ export default function DashboardPage() {
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white">
-                    Input Intent & Kunci Policy
+                    Input Intent & Lock Policy
                   </h2>
                   <p className="mt-1 text-sm text-[#6b6e69] dark:text-neutral-400">
-                    Tentukan batasan izin transaksi menggunakan bahasa alami.
+                    Define transaction permission limits using natural language.
                   </p>
                 </div>
                 {signedPolicy && (
@@ -738,7 +735,7 @@ export default function DashboardPage() {
 
               <div className="mt-4 flex items-center justify-between">
                 <p className="text-xs text-[#8a929d] dark:text-neutral-500">
-                  User menetapkan aturan limit maksimum.
+                  User sets the maximum limit rule.
                 </p>
                 <Button
                   className="rounded-full bg-[#273b61] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1f3152] dark:bg-blue-600 dark:hover:bg-blue-500"
@@ -763,8 +760,8 @@ export default function DashboardPage() {
                   Agent Proposal Playground
                 </h2>
                 <p className="mt-1 text-sm text-[#6b6e69] dark:text-neutral-400">
-                  Simulasikan eksekusi transaksi oleh agen terhadap Policy User
-                  yang sudah dikunci.
+                  Simulate agent transaction execution against the locked User
+                  Policy.
                 </p>
               </div>
 
@@ -783,10 +780,10 @@ export default function DashboardPage() {
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   </div>
                   <h3 className="text-base font-bold text-gray-900 dark:text-white">
-                    Uji Agen Jujur (300 USDC)
+                    Honest Agent Test (300 USDC)
                   </h3>
                   <p className="mt-1 text-xs text-gray-500 dark:text-neutral-400">
-                    Proposal $\le$ Limit User. Transaksi harus lolos.
+                    Proposal &lt; User Limit. Transaction should pass.
                   </p>
                 </button>
 
@@ -803,19 +800,30 @@ export default function DashboardPage() {
                     <span className="h-2 w-2 rounded-full bg-rose-500" />
                   </div>
                   <h3 className="text-base font-bold text-gray-900 dark:text-white">
-                    Uji Agen Jahat (5.000 USDC)
+                    Malicious Agent Test (5,000 USDC)
                   </h3>
                   <p className="mt-1 text-xs text-gray-500 dark:text-neutral-400">
-                    Proposal $ Limit User. Harus diblokir Layer 1.
+                    Proposal &gt; User Limit. Must be blocked by Layer 1.
                   </p>
                 </button>
               </div>
+
+              <label className="mb-4 flex cursor-pointer items-center gap-2 text-xs text-gray-500 dark:text-neutral-400">
+                <input
+                  type="checkbox"
+                  checked={bypassL1}
+                  onChange={(e) => setBypassL1(e.target.checked)}
+                  disabled={!signedPolicy || isExecutingAgent}
+                  className="h-4 w-4 accent-rose-500"
+                />
+                Bypass L1 verifier (malicious backend simulation — still blocked by L2)
+              </label>
 
               {/* MANUAL AGENT INPUT */}
               <div className="flex flex-col items-end gap-3 border-t border-gray-100 pt-4 dark:border-white/5 sm:flex-row">
                 <div className="w-full">
                   <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-neutral-400">
-                    Custom Nominal Proposal Agen (USDC)
+                    Custom Agent Proposal Amount (USDC)
                   </label>
                   <input
                     type="number"
@@ -830,9 +838,9 @@ export default function DashboardPage() {
                   disabled={
                     !signedPolicy || isExecutingAgent || !proposedAmount
                   }
-                  className="w-full shrink-0 rounded-xl bg-purple-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-purple-700 sm:w-auto"
+                  className="h-auto w-full shrink-0 rounded-xl bg-purple-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-purple-700 sm:w-auto"
                 >
-                  {isExecutingAgent ? "Executing..." : "Kirim Proposal Agen"}
+                  {isExecutingAgent ? "Executing..." : "Send Agent Proposal"}
                 </Button>
               </div>
             </section>
@@ -853,10 +861,19 @@ export default function DashboardPage() {
               </div>
 
               <div className="space-y-4">
-                {logs.map((log, index) => (
+                {logs.map((log) => (
                   <React.Fragment key={log.step}>
+                    {/* ponytail: border meniru warna dot secara inline, ekstrak helper saat dipakai ketiga kali */}
                     <div
-                      className="flex items-center justify-between rounded-2xl border border-gray-100 bg-gray-50 p-3.5 dark:border-white/5 dark:bg-white/[0.02]"
+                      className={`flex items-center justify-between rounded-2xl border bg-gray-50 p-3.5 dark:bg-white/[0.02] ${
+                        log.status === "success"
+                          ? "border-emerald-500/40"
+                          : log.status === "error"
+                            ? "border-rose-500/40"
+                            : log.status === "loading"
+                              ? "border-blue-500/40"
+                              : "border-gray-100 dark:border-white/5"
+                      }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
@@ -880,10 +897,6 @@ export default function DashboardPage() {
                         {log.status}
                       </span>
                     </div>
-                    {/* Separator line after each log except last */}
-                    {index < logs.length - 1 && (
-                      <div className="h-px w-full bg-gray-200 dark:bg-gray-700"></div>
-                    )}
                   </React.Fragment>
                 ))}
               </div>
@@ -896,6 +909,18 @@ export default function DashboardPage() {
                     <div>
                       <p className="font-bold">Layer 1 Off-Chain Rejected</p>
                       <p className="mt-1">An error occurred during Layer 1 verification</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* ponytail: duplikat pola L1, gabung saat ada varian ketiga */}
+              {logs.find((l) => l.step === "l2")?.status === "error" && (
+                <div className="mt-6 rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-600 dark:text-rose-400 shadow-[0_4px_12px_rgba(239,68,68,0.1)] dark:shadow-[0_4px_12px_rgba(239,68,68,0.2)]">
+                  <div className="flex items-start gap-2">
+                    <span className="text-lg">⚠️</span>
+                    <div>
+                      <p className="font-bold">Layer 2 On-Chain Rejected</p>
+                      <p className="mt-1">An error occurred during Layer 2 verification</p>
                     </div>
                   </div>
                 </div>
@@ -913,7 +938,7 @@ export default function DashboardPage() {
               Review & Sign Draft Policy
             </h3>
             <p className="mb-6 text-sm text-gray-500 dark:text-neutral-400">
-              Periksa dan kunci aturan sebelum diserahkan ke agen.
+              Review and lock the rules before handing off to the agent.
             </p>
 
             <div className="mb-6 space-y-4">
@@ -969,7 +994,7 @@ export default function DashboardPage() {
                 onClick={() => setDraftPolicy(null)}
                 className="rounded-full"
               >
-                Batal
+                Cancel
               </Button>
               <Button
                 onClick={handleSignPolicy}
