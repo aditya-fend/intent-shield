@@ -1,12 +1,16 @@
+"use client";
+import { useLang, type TKey } from "@/lib/lang";
+
 export function ProblemSection() {
+  const { t } = useLang();
   return (
     <section id="problem" className="pb-4 scroll-mt-24">
       <div className="grid gap-4 lg:grid-cols-12">
         <div className="problem-card-left rounded-[2.25rem] bg-white dark:bg-[#11141c] p-7 sm:p-10 lg:col-span-5 will-change-transform">
           <h2 className="text-3xl font-bold leading-[1.05] tracking-[-0.04em] sm:text-4xl text-[#1d2a40] dark:text-white">
-            Masalah Klasik
+            {t("problem.title1")}
             <br />
-            AI Agent:
+            {t("problem.title2")}
             <br />
             <span className="text-[#c76561] dark:text-red-400">
               Single Point of Failure
@@ -14,32 +18,24 @@ export function ProblemSection() {
           </h2>
 
           <p className="mt-6 text-base leading-7 text-[#686b66] dark:text-neutral-400">
-            Memberikan kontrol dompet (`private key`) kepada
-            program AI secara tradisional sangat berisiko. Jika
-            model kecerdasan buatan berhalusinasi, di-hack (prompt
-            injection), atau tidak sengaja salah perhitungan,
+            {t("problem.desc")}
             <strong className="text-[#3e403d] dark:text-white">
               {" "}
-              seluruh aset kripto Anda bisa terkuras dalam hitungan
-              detik.
+              {t("problem.strong")}
             </strong>
           </p>
 
           <ul className="mt-7 space-y-3">
-            {[
-              "AI menukar token palsu secara mandiri.",
-              "Transaksi melampaui batas slippage ekstrem.",
-              'Serangan penyusup untuk menguras saldo dompet ("Wallet Draining Event").',
-            ].map((item) => (
+            {(["problem.li1", "problem.li2", "problem.li3"] as TKey[]).map((k) => (
               <li
-                key={item}
+                key={k}
                 className="problem-list-item flex items-start gap-3 rounded-2xl bg-[#fcf1f0] dark:bg-red-950/20 px-4 py-3 text-sm text-[#76504e] dark:text-red-300 will-change-transform"
               >
                 <span className="font-bold text-[#c76561] dark:text-red-400">
                   ×
                 </span>
 
-                <span>{item}</span>
+                <span>{t(k)}</span>
               </li>
             ))}
           </ul>
@@ -71,7 +67,7 @@ const executeAITransaction = async (prompt) => {
             </pre>
 
             <div className="mt-7 rounded-2xl bg-[#4b2928] px-4 py-3 text-sm font-medium text-[#f0b5b0]">
-              Risiko Kehilangan Saldo: Sangat Tinggi · No Safeguards
+              {t("problem.risk")}
             </div>
           </div>
         </div>

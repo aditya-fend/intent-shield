@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Sora } from "next/font/google";
 import { Web3Provider } from "@/providers/web3-provider";
+import { LangProvider } from "@/lib/lang";
 import { Navbar } from "@/components/navbar";
 import "@/styles/globals.css";
 
@@ -31,8 +32,10 @@ export default function RootLayout({
     >
       <body className="antialiased font-sans">
         <Web3Provider>
-          <Navbar />
-          {children}
+          <LangProvider>
+            <Navbar />
+            {children}
+          </LangProvider>
         </Web3Provider>
       </body>
     </html>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useAccount, useSignTypedData, useSwitchChain } from "wagmi";
 import { Button } from "@/components/ui/button";
+import { useLang, type TKey } from "@/lib/lang";
 import Link from "next/link";
 import gsap from "gsap";
 
@@ -59,6 +60,7 @@ const initialLogs: ExecutionLog[] = [
 ];
 
 function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
+  const { t } = useLang();
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -228,13 +230,12 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
                 </svg>
               </div>
               <h1 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white sm:text-3xl">
-                Intent Execution Complete
+                {t("dash.pTitle")}
               </h1>
             </div>
 
             <p className="proof-desc text-sm leading-relaxed text-[#59616d] dark:text-neutral-400">
-              Off-chain and on-chain cryptographic proofs verified.
-              Transaction executed safely within your approved limits.
+              {t("dash.pDesc")}
             </p>
           </div>
 
@@ -242,7 +243,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
           <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Network
+                {t("dash.net")}
               </span>
               <p className="mt-1 text-sm font-bold text-[#1d2a40] dark:text-white">
                 Base Sepolia (Chain 84532)
@@ -251,7 +252,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
 
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Transaction Pair
+                {t("dash.pair")}
               </span>
               <p className="mt-1 text-sm font-bold text-[#1d2a40] dark:text-white">
                 USDC → ETH · Uniswap
@@ -260,7 +261,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
 
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Security Method
+                {t("dash.sec")}
               </span>
               <p className="mt-1 text-sm font-bold text-[#1d2a40] dark:text-white">
                 Off-Chain L1 + On-Chain Enforcer
@@ -269,10 +270,10 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
 
             <div className="proof-item rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 transition-colors hover:border-[#cbd5e7] dark:border-white/5 dark:bg-[#131720] dark:hover:border-white/10">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#858981] dark:text-neutral-400">
-                Verification Result
+                {t("dash.ver")}
               </span>
               <p className="mt-1 text-sm font-bold text-emerald-600 dark:text-emerald-400">
-                Passed (Within Limit)
+                {t("dash.verOk")}
               </p>
             </div>
           </div>
@@ -282,10 +283,10 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
             <div className="proof-tx-box mb-8 rounded-2xl border border-[#e2e5df] bg-[#f8f9f6] p-4 dark:border-white/5 dark:bg-[#131720]">
               <div className="mb-2 flex items-center justify-between">
                 <span className="text-[11px] font-semibold uppercase tracking-wider text-[#70736e] dark:text-neutral-400">
-                  Transaction Hash
+                  {t("dash.tx")}
                 </span>
                 <span className="text-[11px] font-mono text-[#5275bb] dark:text-blue-400">
-                  On-Chain Record
+                  {t("dash.onchain")}
                 </span>
               </div>
               <div className="break-all rounded-xl border border-[#dfe3dc] bg-white p-3 font-mono text-xs text-[#273b61] select-all dark:border-white/5 dark:bg-[#090c11] dark:text-blue-300">
@@ -301,7 +302,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
               size="lg"
               className="w-full flex-1 rounded-2xl bg-[#273b61] py-6 text-sm font-semibold text-white shadow-none transition-transform duration-200 hover:bg-[#1f3152] active:scale-[0.99] dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
             >
-              Close & Back
+              {t("dash.close")}
             </Button>
             <Link href="/" className="w-full sm:w-auto">
               <Button
@@ -309,7 +310,7 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
                 variant="outline"
                 className="w-full rounded-2xl border-[#cbd5e7] bg-transparent px-7 py-6 text-sm font-semibold text-[#34415a] shadow-none transition-transform duration-200 hover:bg-neutral-100 active:scale-[0.99] dark:border-white/10 dark:text-neutral-300 dark:hover:bg-white/5"
               >
-                Home
+                {t("dash.home")}
               </Button>
             </Link>
           </div>
@@ -319,7 +320,11 @@ function ProofModal({ tx, onClose }: { tx: string; onClose: () => void }) {
   );
 }
 
+const logKey = (s: string) =>
+  `dash.log${s.charAt(0).toUpperCase()}${s.slice(1)}` as TKey;
+
 export default function DashboardPage() {
+  const { t } = useLang();
   const containerRef = useRef<HTMLDivElement>(null);
   const { address, isConnected, chain } = useAccount();
   const { signTypedDataAsync } = useSignTypedData();
@@ -690,15 +695,13 @@ export default function DashboardPage() {
           <div className="relative z-10 flex h-full flex-col justify-between space-y-6">
             <div className="max-w-3xl space-y-4">
               <h1 className="dash-hero-title text-4xl font-bold leading-tight tracking-tight text-[#1d2a40] dark:text-white sm:text-5xl">
-                Control Dashboard{" "}
+                {t("dash.heroA")}{" "}
                 <span className="text-[#5275bb] dark:text-blue-400">
                   IntentShield
                 </span>
               </h1>
               <p className="dash-hero-desc max-w-2xl text-base text-[#5c687c] dark:text-neutral-400 sm:text-lg">
-                Test dual-layer protection (Off-Chain Verifier & On-Chain Enforcer)
-                against autonomous agent transaction proposals, separately and
-                interactively.
+                {t("dash.heroDesc")}
               </p>
             </div>
           </div>
@@ -713,15 +716,15 @@ export default function DashboardPage() {
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white">
-                    Input Intent & Lock Policy
+                    {t("dash.s1t")}
                   </h2>
                   <p className="mt-1 text-sm text-[#6b6e69] dark:text-neutral-400">
-                    Define transaction permission limits using natural language.
+                    {t("dash.s1d")}
                   </p>
                 </div>
                 {signedPolicy && (
                   <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                    ✓ Policy Locked
+                    {t("dash.locked")}
                   </span>
                 )}
               </div>
@@ -735,14 +738,14 @@ export default function DashboardPage() {
 
               <div className="mt-4 flex items-center justify-between">
                 <p className="text-xs text-[#8a929d] dark:text-neutral-500">
-                  User sets the maximum limit rule.
+                  {t("dash.hint")}
                 </p>
                 <Button
                   className="rounded-full bg-[#273b61] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1f3152] dark:bg-blue-600 dark:hover:bg-blue-500"
                   onClick={handleCompile}
                   disabled={!isConnected || !intent || isCompiling}
                 >
-                  {isCompiling ? "Compiling..." : "Compile & Review Policy"}
+                  {isCompiling ? t("dash.compiling") : t("dash.compile")}
                 </Button>
               </div>
             </section>
@@ -757,11 +760,10 @@ export default function DashboardPage() {
             >
               <div className="mb-6">
                 <h2 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white">
-                  Agent Proposal Playground
+                  {t("dash.s2t")}
                 </h2>
                 <p className="mt-1 text-sm text-[#6b6e69] dark:text-neutral-400">
-                  Simulate agent transaction execution against the locked User
-                  Policy.
+                  {t("dash.s2d")}
                 </p>
               </div>
 
@@ -775,15 +777,15 @@ export default function DashboardPage() {
                 >
                   <div className="mb-1 flex items-center justify-between">
                     <span className="text-xs font-bold uppercase text-emerald-600 dark:text-emerald-400">
-                      Scenario A
+                      {t("dash.aTag")}
                     </span>
                     <span className="h-2 w-2 rounded-full bg-emerald-500" />
                   </div>
                   <h3 className="text-base font-bold text-gray-900 dark:text-white">
-                    Honest Agent Test (300 USDC)
+                    {t("dash.aTitle")}
                   </h3>
                   <p className="mt-1 text-xs text-gray-500 dark:text-neutral-400">
-                    Proposal &lt; User Limit. Transaction should pass.
+                    {t("dash.aDesc")}
                   </p>
                 </button>
 
@@ -795,15 +797,15 @@ export default function DashboardPage() {
                 >
                   <div className="mb-1 flex items-center justify-between">
                     <span className="text-xs font-bold uppercase text-rose-600 dark:text-rose-400">
-                      Scenario B
+                      {t("dash.bTag")}
                     </span>
                     <span className="h-2 w-2 rounded-full bg-rose-500" />
                   </div>
                   <h3 className="text-base font-bold text-gray-900 dark:text-white">
-                    Malicious Agent Test (5,000 USDC)
+                    {t("dash.bTitle")}
                   </h3>
                   <p className="mt-1 text-xs text-gray-500 dark:text-neutral-400">
-                    Proposal &gt; User Limit. Must be blocked by Layer 1.
+                    {t("dash.bDesc")}
                   </p>
                 </button>
               </div>
@@ -816,14 +818,14 @@ export default function DashboardPage() {
                   disabled={!signedPolicy || isExecutingAgent}
                   className="h-4 w-4 accent-rose-500"
                 />
-                Bypass L1 verifier (malicious backend simulation — still blocked by L2)
+                {t("dash.bypass")}
               </label>
 
               {/* MANUAL AGENT INPUT */}
               <div className="flex flex-col items-end gap-3 border-t border-gray-100 pt-4 dark:border-white/5 sm:flex-row">
                 <div className="w-full">
                   <label className="mb-1 block text-xs font-medium text-gray-500 dark:text-neutral-400">
-                    Custom Agent Proposal Amount (USDC)
+                    {t("dash.custom")}
                   </label>
                   <input
                     type="number"
@@ -840,7 +842,7 @@ export default function DashboardPage() {
                   }
                   className="h-auto w-full shrink-0 rounded-xl bg-purple-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-purple-700 sm:w-auto"
                 >
-                  {isExecutingAgent ? "Executing..." : "Send Agent Proposal"}
+                  {isExecutingAgent ? t("dash.exec") : t("dash.send")}
                 </Button>
               </div>
             </section>
@@ -852,10 +854,10 @@ export default function DashboardPage() {
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white">
-                    Execution Monitor
+                    {t("dash.monT")}
                   </h2>
                   <p className="mt-1 text-sm text-[#6b6e69] dark:text-neutral-400">
-                    Real-time status pipeline verifikasi.
+                    {t("dash.monD")}
                   </p>
                 </div>
               </div>
@@ -890,7 +892,7 @@ export default function DashboardPage() {
                         <span
                           className={`text-sm font-medium ${log.status === "error" ? "font-bold text-rose-500" : "text-gray-800 dark:text-neutral-200"}`}
                         >
-                          {log.label}
+                          {t(logKey(log.step))}
                         </span>
                       </div>
                       <span className="font-mono text-xs uppercase text-gray-400">
@@ -907,8 +909,8 @@ export default function DashboardPage() {
                   <div className="flex items-start gap-2">
                     <span className="text-lg">⚠️</span>
                     <div>
-                      <p className="font-bold">Layer 1 Off-Chain Rejected</p>
-                      <p className="mt-1">An error occurred during Layer 1 verification</p>
+                      <p className="font-bold">{t("dash.l1t")}</p>
+                      <p className="mt-1">{t("dash.l1d")}</p>
                     </div>
                   </div>
                 </div>
@@ -919,8 +921,8 @@ export default function DashboardPage() {
                   <div className="flex items-start gap-2">
                     <span className="text-lg">⚠️</span>
                     <div>
-                      <p className="font-bold">Layer 2 On-Chain Rejected</p>
-                      <p className="mt-1">An error occurred during Layer 2 verification</p>
+                      <p className="font-bold">{t("dash.l2t")}</p>
+                      <p className="mt-1">{t("dash.l2d")}</p>
                     </div>
                   </div>
                 </div>
@@ -935,16 +937,16 @@ export default function DashboardPage() {
         <div className="fixed inset-0 z-[100] flex overflow-y-auto bg-black/50 p-4 backdrop-blur-sm">
           <div className="m-auto w-full max-w-lg rounded-[2.25rem] border border-[#dfe3dc] bg-white p-8 dark:border-white/10 dark:bg-[#11141c]">
             <h3 className="mb-2 text-2xl font-bold">
-              Review & Sign Draft Policy
+              {t("dash.mTitle")}
             </h3>
             <p className="mb-6 text-sm text-gray-500 dark:text-neutral-400">
-              Review and lock the rules before handing off to the agent.
+              {t("dash.mDesc")}
             </p>
 
             <div className="mb-6 space-y-4">
               <div className="rounded-xl bg-gray-50 p-3 dark:bg-black/30">
                 <label className="block text-xs font-medium text-gray-500 dark:text-neutral-400 mb-1">
-                  Max Amount In (USDC):
+                  {t("dash.maxAmt")}
                 </label>
                 <input
                   type="number"
@@ -959,7 +961,7 @@ export default function DashboardPage() {
               
               <div className="rounded-xl bg-gray-50 p-3 dark:bg-black/30">
                 <label className="block text-xs font-medium text-gray-500 dark:text-neutral-400 mb-1">
-                  Max Slippage Bps:
+                  {t("dash.maxSlip")}
                 </label>
                 <input
                   type="number"
@@ -974,7 +976,7 @@ export default function DashboardPage() {
               
               <div className="rounded-xl bg-gray-50 p-3 dark:bg-black/30">
                 <label className="block text-xs font-medium text-gray-500 dark:text-neutral-400 mb-1">
-                  Expires At (minutes):
+                  {t("dash.exp")}
                 </label>
                 <input
                   type="number"
@@ -994,13 +996,13 @@ export default function DashboardPage() {
                 onClick={() => setDraftPolicy(null)}
                 className="rounded-full"
               >
-                Cancel
+                {t("dash.cancel")}
               </Button>
               <Button
                 onClick={handleSignPolicy}
                 className="rounded-full bg-blue-600 text-white hover:bg-blue-700"
               >
-                Approve & Sign (EIP-712)
+                {t("dash.approve")}
               </Button>
             </div>
           </div>

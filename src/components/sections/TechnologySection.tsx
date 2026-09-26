@@ -1,3 +1,6 @@
+"use client";
+import { useLang } from "@/lib/lang";
+
 const technologies = [
   "Ethereum",
   "BASE",
@@ -7,13 +10,14 @@ const technologies = [
 ];
 
 export function TechnologySection() {
+  const { t } = useLang();
   return (
     <section id="technology" className="pb-20 scroll-mt-24">
       <div className="tech-container-card rounded-[2.25rem] bg-white dark:bg-[#11141c] p-7 sm:p-10 will-change-transform">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="text-2xl font-bold tracking-tight text-[#1d2a40] dark:text-white">
-              Dibangun di atas Web3 & AI
+              {t("tech.title")}
             </h2>
           </div>
 

@@ -1,4 +1,8 @@
+"use client";
+import { useLang } from "@/lib/lang";
+
 export function WhyUsSection() {
+  const { t } = useLang();
   return (
     <section id="why-us" className="pb-20 scroll-mt-24">
       <div className="grid gap-4 lg:grid-cols-12">
@@ -12,17 +16,13 @@ export function WhyUsSection() {
               </div>
 
               <h3 className="mt-6 text-3xl font-bold tracking-[-0.04em] text-[#29364d] dark:text-white">
-                Keamanan Tanpa
+                {t("why.c1t")}
                 <br />
-                Kompromi
+                {t("why.c1t2")}
               </h3>
 
               <p className="mt-4 max-w-xl leading-7 text-[#59677e] dark:text-neutral-400">
-                Bahkan jika API agen (AI) disusupi dan mencoba
-                mengeksekusi "Swap 10 Juta USDC", smart contract
-                Verifier L1 akan menggagalkan transaksi (revert)
-                secara kriptografis karena melebihi "maxAmountIn"
-                yang Anda tanda tangani.
+                {t("why.c1d")}
               </p>
             </div>
 
@@ -32,7 +32,7 @@ export function WhyUsSection() {
               </span>
 
               <span className="text-xs font-semibold text-[#5672a7] dark:text-blue-300">
-                Cryptographic Guard
+                {t("why.badge")}
               </span>
             </div>
           </div>
@@ -45,26 +45,23 @@ export function WhyUsSection() {
             </div>
 
             <h3 className="mt-6 text-3xl font-bold tracking-[-0.04em] text-[#304638] dark:text-white">
-              Pengalaman
+              {t("why.c2t2")}
               <br />
-              Natural
+              {t("why.c2t")}
             </h3>
 
             <p className="mt-4 leading-7 text-[#65766b] dark:text-neutral-400">
-              Lupakan kerumitan memasukkan ID kontrak hexadecimal
-              atau kalkulasi token wei 18-desimal. Gemini AI
-              menyusun sintaks operasional berat hanya dengan
-              bahasa manusia biasa.
+              {t("why.c2d")}
             </p>
 
             <div className="mt-auto pt-10">
               <div className="why-prompt-box rounded-2xl bg-white/60 dark:bg-white/10 p-5 will-change-transform">
                 <p className="text-[10px] font-semibold tracking-[0.15em] text-[#789080] dark:text-emerald-400">
-                  Example
+                  {t("why.ex")}
                 </p>
 
                 <p className="mt-2 text-sm font-medium text-[#405649] dark:text-neutral-200">
-                  "Swap maksimal 300 USDC ke ETH"
+                  {t("why.quote")}
                 </p>
               </div>
             </div>

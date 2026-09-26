@@ -1,7 +1,10 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useLang } from "@/lib/lang";
 
 export function CtaSection() {
+  const { t } = useLang();
   return (
     <section id="cta-section" className="pb-20 sm:pb-28">
       <div className="cta-banner-card relative overflow-hidden rounded-[2.5rem] bg-[#e7eef9] dark:bg-[#0f172a] px-7 py-16 text-center sm:px-12 sm:py-24 will-change-transform">
@@ -11,15 +14,13 @@ export function CtaSection() {
 
         <div className="cta-content relative z-10 mx-auto max-w-3xl will-change-transform">
           <h2 className="mt-6 text-4xl font-bold leading-[0.98] tracking-[-0.055em] text-[#27354d] dark:text-white sm:text-6xl">
-            Kendalikan Keamanan
+            {t("cta.title1")}
             <br />
-            Eksekusi AI Hari Ini.
+            {t("cta.title2")}
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-[#627087] dark:text-neutral-400 sm:text-lg">
-            Jangan pertaruhkan dompet Anda pada probabilitas
-            halusinasi AI. Pasang "Pelindung Niat" kriptografis
-            mutlak.
+            {t("cta.desc")}
           </p>
 
           <div className="mt-9">
@@ -28,7 +29,7 @@ export function CtaSection() {
                 size="lg"
                 className="gsap-button rounded-full bg-[#273b61] dark:bg-blue-600 px-8 py-7 text-base font-bold text-white shadow-none hover:bg-[#1f3152] dark:hover:bg-blue-500"
               >
-                Coba Demo IntentShield Sekarang
+                {t("cta.btn")}
               </Button>
             </Link>
           </div>

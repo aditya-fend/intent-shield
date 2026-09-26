@@ -1,31 +1,35 @@
-const steps = [
+"use client";
+import { useLang, type TKey } from "@/lib/lang";
+
+const steps: { number: string; title: TKey; text: TKey; className: string }[] = [
   {
     number: "01",
-    title: "Input Pengguna",
-    text: 'Pengguna mengetikkan perintah spesifik, misalnya "Swap maksimal 300 USDC ke ETH".',
+    title: "how.s1t",
+    text: "how.s1d",
     className: "bg-[#fffdf7] dark:bg-[#11141c]",
   },
   {
     number: "02",
-    title: "AI Intent Compiler",
-    text: "Google Gemini API dan Backend mengonversi teks menjadi Draft JSON Policy kuantitatif.",
+    title: "how.s2t",
+    text: "how.s2d",
     className: "bg-[#edf2fb] dark:bg-[#0f172a]",
   },
   {
     number: "03",
-    title: "EIP-712 Signature",
-    text: "Pengguna menyetujui parameter keamanan menggunakan tanda tangan wallet tanpa gas fee.",
+    title: "how.s3t",
+    text: "how.s3d",
     className: "bg-[#edf6f0] dark:bg-[#0b1c14]",
   },
   {
     number: "04",
-    title: "L1 Verify & L2 Execute",
-    text: "Sistem memverifikasi tanda tangan. Gagal = Revert. Jika lolos, diteruskan ke Base Smart Account.",
+    title: "how.s4t",
+    text: "how.s4d",
     className: "bg-[#eeeaf8] dark:bg-[#191328]",
   },
 ];
 
 export function HowItWorksSection() {
+  const { t } = useLang();
   return (
     <section
       id="how-it-works"
@@ -33,13 +37,11 @@ export function HowItWorksSection() {
     >
       <div className="how-it-works-header mb-10 max-w-2xl sm:mb-14 will-change-transform">
         <h2 className="text-3xl font-bold tracking-[-0.04em] sm:text-5xl text-[#1d2a40] dark:text-white">
-          Cara Kerja IntentShield
+          {t("how.title")}
         </h2>
 
         <p className="mt-5 text-base leading-7 text-[#6b6e69] dark:text-neutral-400 sm:text-lg">
-          Membalikkan paradigma keamanan. Keputusan eksekusi
-          dienkapsulasi menggunakan "Intent Core" dengan batasan
-          parametrik yang dikunci secara on-chain.
+          {t("how.desc")}
         </p>
       </div>
 
@@ -61,11 +63,11 @@ export function HowItWorksSection() {
 
             <div className="mt-24">
               <h3 className="text-xl font-bold tracking-tight text-[#1d2a40] dark:text-white">
-                {item.title}
+                {t(item.title)}
               </h3>
 
               <p className="mt-3 text-sm leading-6 text-[#70736e] dark:text-neutral-400">
-                {item.text}
+                {t(item.text)}
               </p>
             </div>
           </div>

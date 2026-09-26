@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAccount, useBalance, useConnect, useDisconnect } from "wagmi";
 import { formatUnits } from "viem";
 import { Button } from "@/components/ui/button";
+import { useLang, type TKey } from "@/lib/lang";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -13,17 +14,18 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const navLinks = [
-  { name: "Beranda", href: "#hero", id: "hero" },
-  { name: "Masalah", href: "#problem", id: "problem" },
-  { name: "Cara Kerja", href: "#how-it-works", id: "how-it-works" },
-  { name: "Keunggulan", href: "#why-us", id: "why-us" },
-  { name: "Teknologi", href: "#technology", id: "technology" },
+const navLinks: { key: TKey; href: string; id: string }[] = [
+  { key: "nav.home", href: "#hero", id: "hero" },
+  { key: "nav.problem", href: "#problem", id: "problem" },
+  { key: "nav.how", href: "#how-it-works", id: "how-it-works" },
+  { key: "nav.why", href: "#why-us", id: "why-us" },
+  { key: "nav.tech", href: "#technology", id: "technology" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const { lang, setLang, t } = useLang();
 
   const [activeSection, setActiveSection] = useState<string>("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -234,7 +236,7 @@ export function Navbar() {
                   }
                 `}
               >
-                <span className="relative z-10">{link.name}</span>
+                <span className="relative z-10">{t(link.key)}</span>
                 {isActive && (
                   <span className="absolute inset-0 bg-[#273b61] dark:bg-blue-600 rounded-full scale-100 transition-transform duration-300" />
                 )}
@@ -245,6 +247,14 @@ export function Navbar() {
 
         {/* WALLET / ACTIONS */}
         <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            type="button"
+            aria-label="Toggle language"
+            onClick={() => setLang(lang === "en" ? "id" : "en")}
+            className="rounded-full border border-[#e2e5df] dark:border-white/10 bg-white/70 dark:bg-white/5 px-3 py-2 text-xs font-bold text-[#273b61] dark:text-white transition-all duration-200 hover:scale-105"
+          >
+            {lang === "en" ? "EN | ID" : "ID | EN"}
+          </button>
           {isConnected ? (
             <>
               <div className="hidden sm:flex items-center gap-2 rounded-full bg-white/70 dark:bg-white/5 px-3 py-2 text-xs font-semibold text-[#59616d] dark:text-neutral-300 backdrop-blur-sm">
@@ -275,7 +285,7 @@ export function Navbar() {
                 "
                 onClick={() => disconnect()}
               >
-                Disconnect
+                {t("nav.disconnect")}
               </Button>
             </>
           ) : (
@@ -296,7 +306,7 @@ export function Navbar() {
                 transition-all duration-200 hover:scale-105
               "
             >
-              {isPending ? "Connecting..." : "Connect Wallet"}
+              {isPending ? t("nav.connecting") : t("nav.connect")}
             </Button>
           )}
 
@@ -379,7 +389,7 @@ export function Navbar() {
                       }
                     `}
                 >
-                  <span>{link.name}</span>
+                  <span>{t(link.key)}</span>
                   {isActive && (
                     <span className="h-1.5 w-1.5 rounded-full bg-current" />
                   )}

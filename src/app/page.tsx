@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { useLang } from "@/lib/lang";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -16,6 +17,7 @@ if (typeof window !== "undefined") {
 
 export default function LandingPage() {
   const pageRef = useRef<HTMLDivElement>(null);
+  const { t } = useLang();
 
   useEffect(() => {
     const root = pageRef.current;
@@ -712,12 +714,11 @@ export default function LandingPage() {
       <footer className="bg-[#f2f3ef] dark:bg-[#07090e]">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-2 px-4 py-8 text-center text-xs text-[#858981] dark:text-neutral-400 sm:px-6 lg:px-8">
           <p>
-            © {new Date().getFullYear()} IntentShield Project — Hackathon
-            Prototype.
+            © {new Date().getFullYear()} {t("footer.proto")}
           </p>
 
           <p>
-            Dipersiapkan dengan kerangka kerja{" "}
+            {t("footer.built")}{" "}
             <strong className="text-[#5d605a] dark:text-neutral-200">
               Next.js App Router, TailwindCSS, Wagmi, & Google GenAI
             </strong>

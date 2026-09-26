@@ -1,7 +1,10 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useLang } from "@/lib/lang";
 
 export function HeroSection() {
+  const { t } = useLang();
   return (
     <section
       id="hero"
@@ -19,28 +22,24 @@ export function HeroSection() {
             <div>
               <h1 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-[-0.04em] text-[#1d2a40] dark:text-white sm:text-5xl lg:text-[3.75rem] xl:text-[4.4rem]">
                 <span className="hero-title-line block">
-                  Kendali Penuh
+                  {t("hero.t1")}
                 </span>
 
                 <span className="hero-title-line block">
-                  AI Agent,
+                  {t("hero.t2")}
                 </span>
 
                 <span className="hero-title-line block text-[#5275bb] dark:text-blue-400">
-                  Tanpa Kompromi
+                  {t("hero.t3")}
                 </span>
 
                 <span className="hero-title-line block text-[#5275bb] dark:text-blue-400">
-                  Keamanan.
+                  {t("hero.t4")}
                 </span>
               </h1>
 
               <p className="hero-description mt-6 max-w-xl text-sm leading-relaxed text-[#5c687c] dark:text-neutral-400 sm:text-base sm:leading-7">
-                IntentShield adalah arsitektur keamanan tingkat
-                lanjut untuk mendelegasikan eksekusi transaksi Web3
-                kepada AI. Menggabungkan Google Gemini, verifikasi
-                matematis L1, dan Account Abstraction di jaringan
-                Base.
+                {t("hero.desc")}
               </p>
             </div>
 
@@ -50,7 +49,7 @@ export function HeroSection() {
                   size="lg"
                   className="gsap-button rounded-full bg-[#273b61] dark:bg-blue-600 px-7 py-6 font-semibold text-white shadow-none hover:bg-[#1f3152] dark:hover:bg-blue-500"
                 >
-                  Launch Dashboard App
+                  {t("hero.launch")}
                 </Button>
               </Link>
 
@@ -64,7 +63,7 @@ export function HeroSection() {
                   variant="outline"
                   className="gsap-button rounded-full border-[#cbd5e7] dark:border-white/10 bg-white/60 dark:bg-white/10 px-7 py-6 font-semibold text-[#34415a] dark:text-neutral-200 shadow-none backdrop-blur-sm hover:bg-white dark:hover:bg-white/20"
                 >
-                  Baca Dokumentasi GitHub
+                  {t("hero.docs")}
                 </Button>
               </Link>
             </div>
@@ -87,7 +86,7 @@ export function HeroSection() {
               </div>
 
               <p className="mt-2 max-w-xs text-sm leading-6 text-[#73756e] dark:text-neutral-400">
-                Parameter keamanan dikunci dan diverifikasi secara off-chain sebelum eksekusi.
+                {t("hero.l1desc")}
               </p>
             </div>
           </div>
@@ -103,11 +102,11 @@ export function HeroSection() {
 
               <div className="mt-6">
                 <p className="text-2xl font-bold tracking-tight text-[#294033] dark:text-white">
-                  AI → Intent → Verify
+                  {t("hero.flow")}
                 </p>
 
                 <p className="mt-2 max-w-xs text-sm leading-6 text-[#66786d] dark:text-neutral-400">
-                  AI tidak memegang kendali mutlak atas wallet.
+                  {t("hero.flowdesc")}
                 </p>
               </div>
             </div>
