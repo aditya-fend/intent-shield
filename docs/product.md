@@ -1,15 +1,15 @@
 # Product Specification
 
-## Definisi
-IntentShield adalah layer keamanan (*policy enforcement layer*) untuk autonomous blockchain agents yang menerjemahkan intent bahasa alami manusia menjadi *authorization policy* yang ditandatangani oleh user, kemudian ditegakkan secara akurat terhadap transaksi blockchain aktual[cite: 1].
+## Definition
+IntentShield is a policy enforcement layer for autonomous blockchain agents. It translates human natural-language intent into a user-signed authorization policy, then enforces it exactly against the actual on-chain transaction.
 
-## Masalah yang Diseleksi
-**Authorization ≠ Intent**[cite: 1]. Memberikan akses wallet ke AI Agent bukan berarti AI hanya akan melakukan apa yang dimaksudkan user[cite: 1]. Jika agent mengalami prompt injection atau terkompromi, agent bisa mengeksekusi transaksi dengan jumlah berlebih atau ke target berbahaya[cite: 1].
+## Problem
+**Authorization ≠ Intent.** Giving an AI agent wallet access does not mean it will only do what the user intended. If the agent suffers prompt injection or gets compromised, it can execute oversized amounts or call malicious targets.
 
-## Formula Utama
-`HUMAN INTENT` → `STRUCTURED POLICY` → `USER SIGNATURE` → `POLICY COMMITMENT` → `LIMITED AGENT AUTHORITY` → `ACTUAL TRANSACTION` → `ON-CHAIN POLICY ENFORCEMENT` → `BLOCKCHAIN EXECUTION`[cite: 1]
+## Core Formula
+`HUMAN INTENT` → `STRUCTURED POLICY` → `USER SIGNATURE` → `POLICY COMMITMENT` → `LIMITED AGENT AUTHORITY` → `ACTUAL TRANSACTION` → `ON-CHAIN POLICY ENFORCEMENT` → `BLOCKCHAIN EXECUTION`
 
 ## MVP Use Case (Base Sepolia)
-* **Intent**: "Swap maksimal 500 USDC ke ETH di Uniswap dengan maksimal 1% slippage selama 1 jam."[cite: 1]
-* **Valid Execution**: 300 USDC → ETH (Slippage <= 1%)[cite: 1]
-* **Invalid Execution**: 5,000 USDC → ETH (Melanggar batas policy)[cite: 1]
+* **Intent**: "Swap up to 500 USDC to ETH on Uniswap with max 1% slippage for 1 hour."
+* **Valid execution**: 300 USDC → ETH (slippage <= 1%)
+* **Invalid execution**: 5,000 USDC → ETH (violates policy limit)

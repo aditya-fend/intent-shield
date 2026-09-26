@@ -2,16 +2,16 @@
 
 ## Trust Matrix
 
-| Komponen | Status Trust | Peran / Boundary |
+| Component | Trust status | Role / Boundary |
 | :--- | :--- | :--- |
-| **User Signature (EIP-712)** | TRUSTED | Membuktikan persetujuan manusia atas kebijakan tertentu[cite: 1]. |
-| **Smart Account (Solidity)** | TRUSTED | Penegak batas otorisasi akhir sebelum transaksi dieksekusi[cite: 1]. |
-| **Base Sepolia Blockchain** | TRUSTED | Konsensus state dan eksekusi transaksi terdecentralisasi[cite: 1]. |
-| **Gemini AI** | UNTRUSTED | Parser penerjemah bahasa alami ke draft JSON policy[cite: 1]. |
-| **AI Agent Runner** | UNTRUSTED | Pembuat proposal transaksi (bisa saja terkompromi)[cite: 1]. |
-| **Frontend & Backend / Supabase**| UNTRUSTED | UI dan penyimpanan metadata audit trail saja[cite: 1]. |
+| **User Signature (EIP-712)** | TRUSTED | Proves human approval of a specific policy. |
+| **Smart Account (Solidity)** | TRUSTED | Final authorization boundary before execution. |
+| **Base Sepolia Blockchain** | TRUSTED | Decentralized state consensus and execution. |
+| **Gemini AI** | UNTRUSTED | Natural-language to draft-JSON policy parser. |
+| **AI Agent Runner** | UNTRUSTED | Transaction proposal builder (may be compromised). |
+| **Frontend & Backend / Supabase** | UNTRUSTED | UI and audit-trail metadata storage only. |
 
-[cite: 1]
+Rule: Supabase is never a source of authorization truth. Only a user EIP-712 signature authorizes. Only on-chain verification enforces.
 
 ## Core Security Property
-*An authorized autonomous agent cannot successfully execute a supported blockchain swap through the IntentShield Smart Account when the swap violates the user's signed policy.*[cite: 1]
+*An authorized autonomous agent cannot successfully execute a supported blockchain swap through the IntentShield Smart Account when the swap violates the user's signed policy.*

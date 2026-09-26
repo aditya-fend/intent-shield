@@ -1,13 +1,13 @@
 # Threat Model & Mitigation
 
 ## 1. Compromised / Rogue AI Agent
-* **Threat**: Agent membuat transaksi yang mengalirkan dana ke wallet attacker atau jumlah swap yang membengkak[cite: 1].
-* **Mitigation**: Smart Account hanya mengeksekusi calldata yang `target`-nya terdaftar (`allowedTarget`) dan `amountIn`-nya berada di bawah limit `maxAmountIn`[cite: 1].
+* **Threat**: agent builds a transaction draining funds to an attacker wallet or inflating the swap amount.
+* **Mitigation**: the Smart Account only executes calldata whose target is the registered `allowedTarget` and whose `amountIn` is within `maxAmountIn`.
 
-## 2. Prompt Injection pada Gemini Compiler
-* **Threat**: User/Penyerang mencoba memasukkan prompt jebakan agar Gemini membuat policy dengan limit raksasa[cite: 1].
-* **Mitigation**: Layer **User Review** mewajibkan user membaca dan menyetujui parameter persis sebelum menandatangani[cite: 1].
+## 2. Prompt Injection on the Gemini Compiler
+* **Threat**: attacker crafts a prompt tricking Gemini into producing a policy with a giant limit.
+* **Mitigation**: mandatory **User Review** layer — the user reads and approves exact parameters before signing.
 
 ## 3. Malicious Backend / Supabase Compromise
-* **Threat**: Attacker mengubah record di Supabase dari 500 USDC menjadi 5,000 USDC[cite: 1].
-* **Mitigation**: Smart Account mengecek keabsahan dari EIP-712 signature, BUKAN dari data Supabase[cite: 1].
+* **Threat**: attacker edits a Supabase row from 500 USDC to 5,000 USDC.
+* **Mitigation**: the Smart Account validates the EIP-712 signature, NOT Supabase data. Forged rows fail Layer 1 and always fail Layer 2.

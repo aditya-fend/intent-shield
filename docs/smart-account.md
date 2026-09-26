@@ -22,12 +22,14 @@ const types = {
     { name: 'nonce', type: 'uint256' }
   ]
 };
-```[cite: 1]
+```
+See `src/lib/eip712-types.ts` for the canonical domain, types, and `PolicyStruct`.
 
 ## Smart Contract Checks (Solidity Logic)
-Saat `executeWithPolicy(bytes calldata policy, bytes calldata signature, bytes calldata txCalldata)` dipanggil[cite: 1]:
-1. Verifikasi `signature` terhadap `policy` (harus berasal dari User/Owner)[cite: 1].
-2. Cek `msg.sender` / `agent` identity[cite: 1].
-3. Cek `block.timestamp <= expiresAt`[cite: 1].
-4. Decode `txCalldata` Uniswap: Cek apakah `amountIn <= maxAmountIn` dan `recipient == SmartAccount`[cite: 1].
-5. Eksekusi swap jika semua lolos, atau `revert("PolicyViolation")` jika ada yang melanggar[cite: 1].
+When `executeWithPolicy(Policy policy, bytes signature, ExactInputSingleParams swapParams)` is called (`contracts/IntentShieldEnforcer.sol`):
+1. Verify `msg.sender == policy.agent`.
+2. Check `block.timestamp <= expiresAt`, else `PolicyExpired`.
+3. Check `usedNonces[nonce]` is false (replay protection), else `NonceAlreadyUsed`.
+4. Verify owner EIP-712 signature, else `InvalidSignature`.
+5. Enforce hard constraints: `action == "swap"`, `tokenIn`/`tokenOut` match, `amountIn <= maxAmountIn`, `recipient` is the enforcer or `allowedTarget`. Else revert.
+6. Mark nonce used, `approve` + `exactInputSingle` on the router, emit `PolicyExecuted`.
